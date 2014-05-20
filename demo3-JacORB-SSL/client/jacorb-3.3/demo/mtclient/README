@@ -1,0 +1,12 @@
+Objective:
+    This is a simple example that simulates multiple clients sending
+    concurrent requests to the server. It also demonstrates the use of oneway
+    methods to track which thread has been updated. This is part of the
+    observer interface.
+
+How to Run:
+    Compile:
+        ant compile
+
+    Run Demo:
+        ant demo

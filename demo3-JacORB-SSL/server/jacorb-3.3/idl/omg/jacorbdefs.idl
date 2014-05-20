@@ -1,0 +1,7 @@
+#ifndef _JACORB_DEFINES_
+#define _JACORB_DEFINES_
+
+// This file is deprecated. Standard JacORB defines are now set within the
+// compiler. This file will be removed in a future release.
+
+#endif

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Starts the JacORB TransactionService
+jaco org.jacorb.transaction.TransactionService "$@"

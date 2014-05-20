@@ -1,0 +1,9 @@
+YOU NEED JAVA 7 OR HIGHER ON CLIENT TO RUN THIS DEMO!!
+
+1. Launch server. Run script run_server at jacorb-3.3/demo/hello/build/classes.
+2. Copy IOR file from server's jacorb-3.3/demo/hello/build/tmp directory to client's jacorb-3.3/demo/hello/build/tmp directory.
+3. Launch wireshark.
+4. Launch client. Run script run_client at jacorb-3.3/demo/hello/build/classes.
+5. In wireshark display filter enter ssl.handshake. From wireshark capture copy Session-id (look inside Server Hello message), Challenge (look inside Client Hello message), and Random (look inside Server Hello message). Run compute-master.py python script, transfer previously copied parameters to script. Script will generate master log file.
+6. In wireshark press combination Shift+Ctrl+P. Choose protocol, find SSL, specify previously generated file in (Pre-)master log file field.
+7. In wireshark display filter enter ssl.app_data. Right mouse click on any packet, choose follow SSL stream. BINGO! You uncovered SSL session.

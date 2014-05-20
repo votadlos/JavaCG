@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Starts the JacORB Interface Repository
+jaco org.jacorb.ir.IRServer "$@"

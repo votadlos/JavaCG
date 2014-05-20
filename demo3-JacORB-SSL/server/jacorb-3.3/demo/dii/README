@@ -1,0 +1,12 @@
+Objective:
+    This example shows how to create and handle (implement) Dynamic Interface 
+    Invocations. The client creates requests dynamically and invokes them.
+    DiiServer shows how to resolve these dynamic invocations, including 
+    throwing exceptions. 
+    
+How to Run:
+    Compile:
+        ant compile
+
+    Run Demo:
+        ant demo

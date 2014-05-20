@@ -1,0 +1,5 @@
+#!/bin/bash
+
+##-Djavax.net.debug=all
+PATH=/home/ema/jacorb-3.3/bin:/home/ema/java6/jdk1.6.0_45/bin/:$PATH
+jaco -DOAIAddr=192.168.66.2 -Dcustom.props=../../resources/jsse_server_props demo.hello.Server ../tmp/server1454554771.ior

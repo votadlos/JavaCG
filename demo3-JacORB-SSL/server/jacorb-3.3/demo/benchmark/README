@@ -1,0 +1,14 @@
+Objective:
+    A simple benchmark for remote invocations. It takes the system clock right
+    before and after method invocations. Can choose simple ping, transfer of 
+    array of ints, or transfer of array of structs, plus size of structs and 
+    number of loops.
+    
+    There is also a simple example for local invocations using ColocatedServer 
+    
+How to Run:
+    Compile:
+        ant compile
+
+    Run Demo:
+        ant demo

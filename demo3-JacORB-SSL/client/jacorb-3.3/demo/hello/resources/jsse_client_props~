@@ -1,0 +1,24 @@
+jacorb.security.support_ssl=on
+
+# IIOP/SSL parameters (numbers are hex values, without the leading "0x"):
+# EstablishTrustInClient = 40
+# EstablishTrustInTarget = 20
+# mutual authentication = 60
+jacorb.security.ssl.client.supported_options=60
+jacorb.security.ssl.client.required_options=60
+
+jacorb.ssl.socket_factory=org.jacorb.security.ssl.sun_jsse.SSLSocketFactory
+jacorb.ssl.server_socket_factory=org.jacorb.security.ssl.sun_jsse.SSLServerSocketFactory
+
+jacorb.security.keystore_password=jsse_client_ks_pass
+jacorb.security.keystore=/home/ema/jacorb-3.3/demo/hello/resources/jsse_client_ks
+
+# Read trusted certificates from the keystore
+jacorb.security.jsse.trustees_from_ks=on
+
+#Little cheat here)))
+jacorb.security.randomClassPlugin=org.jacorb.security.ssl.sun_jsse.JSRandomImpl
+#jacorb.security.ssl.client.cipher_suites=TLS_RSA_WITH_AES_128_CBC_SHA
+
+#Turn on debug level
+#jacorb.log.default.verbosity=4

